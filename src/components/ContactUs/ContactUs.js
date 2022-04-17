@@ -40,7 +40,7 @@ const ContactUs = () => {
            name: data.name,
            email: data.email,
            query: data.query,
-           date: new Date()
+           date: new Date().toDateString
        }
 
        fetch('https://care-box-tech.herokuapp.com/postData', {
