@@ -1,103 +1,182 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
-import { Container, Navbar, Nav, Link, Form, Button, FormControl, Row, Col, Card  } from 'react-bootstrap';
-import logo from '../../media/logo.png'
-import load from '../../media/load.gif'
-import aws from '../../media/aws.png'
-import Dell from '../../media/Dell.png'
-import google from '../../media/google.png'
-import Honeywell from '../../media/Honeywell.png'
-import Zebra from '../../media/Zebra.png'
-import web from '../../media/web.png'
-import cloud from '../../media/cloud.png'
-import app from '../../media/app.png'
-import network from '../../media/network.png'
-import hrm from '../../media/hrm.png'
-import smart from '../../media/smart.png'
-import cms from '../../media/cms.png'
-import digital from '../../media/digital.png'
-import hitech from '../../media/hitech.png'
-import security from '../../media/security.png'
-import sales from '../../media/sales.png'
-import managed from '../../media/managed.png'
-import prof from '../../media/prof.gif'
-import contact from '../../media/contact.gif'
-import callus from '../../media/callus.gif'
-
+import {
+  Container,
+  Navbar,
+  Nav,
+  Link,
+  Form,
+  Button,
+  FormControl,
+  Row,
+  Col,
+  Card,
+} from "react-bootstrap";
+import logo from "../../media/logo.png";
+import load from "../../media/load.gif";
+import aws from "../../media/aws.png";
+import Dell from "../../media/Dell.png";
+import google from "../../media/google.png";
+import Honeywell from "../../media/Honeywell.png";
+import Zebra from "../../media/Zebra.png";
+import web from "../../media/web.png";
+import cloud from "../../media/cloud.png";
+import app from "../../media/app.png";
+import network from "../../media/network.png";
+import hrm from "../../media/hrm.png";
+import smart from "../../media/smart.png";
+import cms from "../../media/cms.png";
+import digital from "../../media/digital.png";
+import hitech from "../../media/hitech.png";
+import security from "../../media/security.png";
+import sales from "../../media/sales.png";
+import managed from "../../media/managed.png";
+import prof from "../../media/prof.gif";
+import contact from "../../media/contact.gif";
+import callus from "../../media/callus.gif";
 
 const ContactUs = () => {
-    function changeBackground(e) {
-        e.target.style.color = "#CB1D63"
-      }
-      function change(e){
-          e.target.style.color = "black"
-      }
-
-      const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => {
-       const queryData = {
-           name: data.name,
-           email: data.email,
-           query: data.query,
-           date: new Date().toDateString
-       }
-
-       fetch('https://care-box-tech.herokuapp.com/postData', {
-           method: 'POST',
-           headers: {'content-type': "application/json"},
-           body: JSON.stringify(queryData)
-       })
-       .then(res => res.json())
-       .then(data => console.log(data))
-       
-
-       document.getElementById("throw").style.display = "none";
-       document.getElementById("dekho").style.display = "block";
+  function changeBackground(e) {
+    e.target.style.color = "#CB1D63";
+  }
+  function change(e) {
+    e.target.style.color = "black";
   }
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    const queryData = {
+      name: data.name,
+      email: data.email,
+      query: data.query,
+      date: new Date().toDateString,
+    };
 
+    fetch("https://care-box-tech.herokuapp.com/postData", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(queryData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
 
+    document.getElementById("throw").style.display = "none";
+    document.getElementById("dekho").style.display = "block";
+  };
 
-    return (
-        <div>
-  <Navbar collapseOnSelect navbar-fixed-top expand="lg" >
-  <Container>
-  <Navbar.Brand href="/"><img src={logo} style={{height:"90px", width:"180px"}}></img></Navbar.Brand>
-  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="mr-auto" style={{ padding: "40px"}}>
-    <Nav.Link href="/home" style={{color: "black", fontFamily: "Poppins", fontWeight: "400"}} onMouseOver={changeBackground} onMouseLeave={change}>Home</Nav.Link>
-      <Nav.Link href="/aboutus" style={{color: "black", fontFamily: "Poppins", fontWeight: "400"}} onMouseOver={changeBackground} onMouseLeave={change}>About Us</Nav.Link>
-      <Nav.Link href="/contactus" style={{color: "black", fontFamily: "Poppins", fontWeight: "400"}} onMouseOver={changeBackground} onMouseLeave={change}>Contact Us</Nav.Link>
-    </Nav>
-    <Button type="submit" style={{color: "white", fontFamily: "Poppins", backgroundColor: "#CB1D63", border: "2px solid #CB1D63"}}><a href="tel:+8801568279503" style={{color: "white", fontFamily: "Poppins", backgroundColor: "#CB1D63", border: "2px solid #CB1D63"}}>CLICK TO CALL</a></Button>
-  </Navbar.Collapse>
-  </Container>    
-</Navbar>
-<br></br>
+  return (
+    <div>
+      <Navbar collapseOnSelect navbar-fixed-top expand="lg">
+        <Container>
+          <Navbar.Brand href="/">
+            <img src={logo} style={{ height: "90px", width: "180px" }}></img>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto" style={{ padding: "40px" }}>
+              <Nav.Link
+                href="/home"
+                style={{
+                  color: "black",
+                  fontFamily: "Poppins",
+                  fontWeight: "400",
+                }}
+                onMouseOver={changeBackground}
+                onMouseLeave={change}
+              >
+                Home
+              </Nav.Link>
+              <Nav.Link
+                href="/aboutus"
+                style={{
+                  color: "black",
+                  fontFamily: "Poppins",
+                  fontWeight: "400",
+                }}
+                onMouseOver={changeBackground}
+                onMouseLeave={change}
+              >
+                About Us
+              </Nav.Link>
+              <Nav.Link
+                href="/contactus"
+                style={{
+                  color: "black",
+                  fontFamily: "Poppins",
+                  fontWeight: "400",
+                }}
+                onMouseOver={changeBackground}
+                onMouseLeave={change}
+              >
+                Contact Us
+              </Nav.Link>
+            </Nav>
+            <Button
+              type="submit"
+              style={{
+                color: "white",
+                fontFamily: "Poppins",
+                backgroundColor: "#CB1D63",
+                border: "2px solid #CB1D63",
+              }}
+            >
+              <a
+                href="tel:+8801756144149"
+                style={{
+                  color: "white",
+                  fontFamily: "Poppins",
+                  backgroundColor: "#CB1D63",
+                  border: "2px solid #CB1D63",
+                }}
+              >
+                CLICK TO CALL
+              </a>
+            </Button>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <br></br>
 
+      <Container>
+        <Row className="justify-content-md-center align-items-center">
+          <Col sm>
+            <h4
+              style={{
+                color: "black",
+                fontFamily: "Poppins",
+                textAlign: "left",
+              }}
+            >
+              We believe in{" "}
+              <span style={{ color: "#CB1D63", fontFamily: "Poppins" }}>
+                100%{" "}
+              </span>
+              optimized <br></br>solutions for long-term sustainability.
+            </h4>
+            <h6
+              style={{
+                color: "black",
+                fontFamily: "Poppins",
+                textAlign: "left",
+              }}
+            >
+              <span>-</span> <span>S. Nicholas</span>
+            </h6>
+          </Col>
+          <Col sm>
+            <img src={load} style={{ width: "90%", height: "55%" }}></img>
+          </Col>
+        </Row>
+      </Container>
+      <br></br>
 
-
-<Container >
-<Row className="justify-content-md-center align-items-center" >
-
-<Col sm >
-<h4 style={{color: "black", fontFamily: "Poppins",  textAlign: "left"}}>We believe in <span style={{color: "#CB1D63", fontFamily: "Poppins"}}>100% </span>optimized <br></br>solutions for long-term sustainability.</h4>
-<h6 style={{color: "black", fontFamily: "Poppins",  textAlign: "left"}}><span >-</span> <span>S. Nicholas</span></h6>
-</Col>
-<Col sm>
-    <img src={load} style={{width: "90%", height: "55%"}}></img>
-    </Col>
-    
-  </Row>
-</Container>
-<br></br>
-
-
-
-
-{/* <div style={{backgroundColor: "#F4EDE4", paddingTop: "10px"}}>
+      {/* <div style={{backgroundColor: "#F4EDE4", paddingTop: "10px"}}>
 <br></br>
 <Container>
 <h3 style={{color: "black", fontFamily: "Poppins"}}>Our Core Services</h3>
@@ -174,16 +253,7 @@ const ContactUs = () => {
 </div>
 <br></br> */}
 
-
-
-
-
-
-
-
-
-
-{/* <Container>
+      {/* <Container>
 <h4 style={{color: "black", fontFamily: "Poppins"}}>Some of Our OEM Connections</h4>
 </Container>
 <br></br>
@@ -230,78 +300,142 @@ We provide the following consultancy services: strategy planning, assessment, pr
 
 </Container> */}
 
+      <Container>
+        <h4 style={{ color: "black", fontFamily: "Poppins" }}>Contact Us</h4>
+      </Container>
 
+      <Container>
+        <Row className="justify-content-md-center align-items-center">
+          <Col sm>
+            <img src={contact} style={{ width: "90%", height: "55%" }}></img>
+          </Col>
+          <Col sm>
+            <Form onSubmit={handleSubmit(onSubmit)} id="throw">
+              <Form.Group className="mb-3" controlId="formBasic">
+                <Form.Control
+                  type="text"
+                  required
+                  placeholder="Enter Name"
+                  {...register("name")}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Control
+                  type="email"
+                  required
+                  placeholder="Enter Email"
+                  {...register("email")}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasic">
+                <Form.Control
+                  type="text"
+                  required
+                  style={{ cols: "40", rows: "5" }}
+                  placeholder="Enter Query"
+                  {...register("query")}
+                />
+              </Form.Group>
+              <Button
+                style={{
+                  backgroundColor: "#CB1D63",
+                  color: "white",
+                  fontFamily: "Poppins",
+                  border: "none",
+                  padding: "10px",
+                }}
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Form>
+            <h5 style={{ fontFamily: "Poppins", display: "none" }} id="dekho">
+              Thanks For Your Query,<br></br> We will get back to you soon.
+            </h5>
+          </Col>
+        </Row>
+      </Container>
+      <br></br>
 
+      <Container>
+        <h4 style={{ color: "black", fontFamily: "Poppins" }}>
+          Address & Conatct Details
+        </h4>
+      </Container>
 
-<Container>
-<h4 style={{color: "black", fontFamily: "Poppins"}}>Contact Us</h4>
-</Container>
+      <Container>
+        <Row className="justify-content-md-center align-items-center">
+          <Col
+            sm
+            style={{
+              padding: "10px",
+              color: "black",
+              fontFamily: "Poppins",
+              border: "none",
+            }}
+          >
+            <h6
+              style={{
+                color: "black",
+                fontFamily: "Poppins",
+                fontWeight: "700",
+              }}
+            >
+              Coporate Head Office:
+            </h6>
+            <p>
+              Road # 27, House # 63, Apartment # Lift-6, Gulshan # 1,
+              Dhaka-1212, Bangladesh.
+            </p>
+            <br></br>
+            <h6
+              style={{
+                color: "black",
+                fontFamily: "Poppins",
+                fontWeight: "700",
+              }}
+            >
+              Phone Number:
+            </h6>
+            <p>+8801756144149</p>
+            <br></br>
+            <h6
+              style={{
+                color: "black",
+                fontFamily: "Poppins",
+                fontWeight: "700",
+              }}
+            >
+              Email:
+            </h6>
+            <p>my@care-box.com</p>
+            <br></br>
+          </Col>
+          <Col sm>
+            <img src={callus} style={{ width: "90%", height: "55%" }}></img>
+          </Col>
+        </Row>
+      </Container>
 
-<Container >
-<Row className="justify-content-md-center align-items-center">
-<Col sm><img src={contact} style={{width: "90%", height: "55%"}}></img></Col>
-    <Col sm>
-     
-    <Form onSubmit={handleSubmit(onSubmit)} id="throw">
-  <Form.Group className="mb-3" controlId="formBasic">
-    <Form.Control type="text" required placeholder="Enter Name" {...register("name")}  />
-  </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Control type="email"  required placeholder="Enter Email" {...register("email")} />
-  </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasic">
-    <Form.Control type="text" required style={{ cols: "40", rows: "5"}} placeholder="Enter Query" {...register("query")}/>
-  </Form.Group>
-  <Button style={{backgroundColor: "#CB1D63", color: "white", fontFamily: "Poppins", border: "none", padding: "10px", }} type="submit">
-    Submit
-  </Button>
-</Form>
-    <h5 style={{ fontFamily: "Poppins", display: "none"}} id="dekho">
-      Thanks For Your Query,<br></br> We will get back to you soon.
-    </h5>
-    </Col>
-    
-</Row>
-</Container>
-<br></br>
-
-<Container>
-<h4 style={{color: "black", fontFamily: "Poppins"}}>Address & Conatct Details</h4>
-</Container>
-
-
-<Container>
-    <Row className="justify-content-md-center align-items-center">
-        <Col sm style={{padding: "10px", color: "black", fontFamily: "Poppins", border: "none"}}>
-            <h6 style={{color: "black", fontFamily: "Poppins", fontWeight: "700"}}>Coporate Head Office:</h6>
-            <p>House number 31, road 10, Block-G , Banani, Dhaka, Bangladesh</p><br></br>
-            <h6 style={{color: "black", fontFamily: "Poppins", fontWeight: "700"}}>Phone Number:</h6>
-            <p>+8801568279503</p><br></br>
-            <h6 style={{color: "black", fontFamily: "Poppins", fontWeight: "700"}}>Email:</h6>
-            <p>my@care-box.com</p><br></br>
-        </Col>
-        <Col sm><img src={callus} style={{width: "90%", height: "55%"}}></img></Col>
-        
-    </Row>
-</Container>
-
-
-<div style={{backgroundColor: "#CB1D63"}}>
-<Container>
-    <Row className="justify-content-md-center align-items-center">
-        <Col sm style={{padding: "10px", color: "white", fontFamily: "Poppins", border: "none"}}>
-            <h6>All Rights Reserved by @ Care-Box Tech. Solutions.</h6>
-        </Col>
-    </Row>
-</Container>
-</div>
-
-
-
-
-
-        </div>
-    );
+      <div style={{ backgroundColor: "#CB1D63" }}>
+        <Container>
+          <Row className="justify-content-md-center align-items-center">
+            <Col
+              sm
+              style={{
+                padding: "10px",
+                color: "white",
+                fontFamily: "Poppins",
+                border: "none",
+              }}
+            >
+              <h6>All Rights Reserved by @ Care-Box Tech. Solutions.</h6>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </div>
+  );
 };
 
 export default ContactUs;
