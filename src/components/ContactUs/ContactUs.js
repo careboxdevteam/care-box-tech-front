@@ -414,10 +414,7 @@ We provide the following consultancy services: strategy planning, assessment, pr
             >
               Coporate Head Office:
             </h6>
-            <p>
-              Road # 27, House # 63, Apartment # Lift-6, Gulshan # 1,
-              Dhaka-1212, Bangladesh.
-            </p>
+            <p>Road # 27, House # 63, Level # 06, Gulshan-1, Dhaka</p>
             <br></br>
             <h6
               style={{
