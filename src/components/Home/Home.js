@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
 import {
@@ -34,14 +34,19 @@ import sales from "../../media/sales.png";
 import managed from "../../media/managed.png";
 import prof from "../../media/prof.gif";
 import contact from "../../media/contact.gif";
+import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Home = () => {
+  const form = useRef();
   function changeBackground(e) {
     e.target.style.color = "#CB1D63";
   }
   function change(e) {
     e.target.style.color = "black";
   }
+
+  const [recaptchaValue, setRecaptchaValue] = useState("");
 
   const {
     register,
@@ -56,13 +61,27 @@ const Home = () => {
       query: data.query,
     };
 
-    fetch("https://care-box-tech.herokuapp.com/postData", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(queryData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    // fetch("https://care-box-tech.herokuapp.com/postData", {
+    //   method: "POST",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify(queryData),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
+
+    emailjs
+      .sendForm("service_pftb4gj", "template_6ds4f7i", form.current, {
+        publicKey: "Vs9KipmwGUEsy-mwj",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+
     document.getElementById("throw").style.display = "none";
     document.getElementById("dekho").style.display = "block";
   };
@@ -381,13 +400,13 @@ const Home = () => {
             {/* errors will return when field validation fails  */}
             {/* {errors.exampleRequired && <span>This field is required</span>} */}
 
-            <Form onSubmit={handleSubmit(onSubmit)} id="throw">
+            <Form ref={form} onSubmit={handleSubmit(onSubmit)} id="throw">
               <Form.Group className="mb-3" controlId="validationCustom01">
                 <Form.Control
                   type="text"
                   required
                   placeholder="Enter Name"
-                  {...register("name")}
+                  {...register("user_name")}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -400,25 +419,38 @@ const Home = () => {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasic">
                 <Form.Control
+                  as="textarea"
+                  rows={3}
                   type="text"
                   required
                   style={{ cols: "40", rows: "5" }}
                   placeholder="Enter Query"
-                  {...register("query")}
+                  {...register("message")}
                 />
               </Form.Group>
-              <Button
-                style={{
-                  backgroundColor: "#CB1D63",
-                  color: "white",
-                  fontFamily: "Poppins",
-                  border: "none",
-                  padding: "10px",
-                }}
-                type="submit"
-              >
-                Submit
-              </Button>
+              <div>
+                <ReCAPTCHA
+                  sitekey="6Le3T1IqAAAAAO28tYRtdbgAQkE092_h1nzLHzo_"
+                  onChange={(value) => setRecaptchaValue(value)}
+                />
+              </div>
+              <div className="d-flex justify-content-start justify-content-md-end">
+                <Button
+                  className="mt-3"
+                  style={{
+                    backgroundColor: recaptchaValue ? "#CB1D63" : "#D13F96",
+                    color: "white",
+                    fontFamily: "Poppins",
+                    border: "none",
+                    padding: "10px",
+                    cursor: recaptchaValue ? "pointer" : "not-allowed",
+                  }}
+                  type="submit"
+                  disabled={!recaptchaValue}
+                >
+                  Submit
+                </Button>
+              </div>
             </Form>
 
             <h5 style={{ fontFamily: "Poppins", display: "none" }} id="dekho">
