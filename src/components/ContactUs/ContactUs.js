@@ -390,7 +390,7 @@ We provide the following consultancy services: strategy planning, assessment, pr
 
       <Container>
         <h4 style={{ color: "black", fontFamily: "Poppins" }}>
-          Address & Conatct Details
+          Address & Contact Details
         </h4>
       </Container>
 
@@ -412,7 +412,7 @@ We provide the following consultancy services: strategy planning, assessment, pr
                 fontWeight: "700",
               }}
             >
-              Coporate Head Office:
+              Corporate Head Office:
             </h6>
             <p>Road # 27, House # 63, Level # 06, Gulshan-1, Dhaka</p>
             <br></br>
